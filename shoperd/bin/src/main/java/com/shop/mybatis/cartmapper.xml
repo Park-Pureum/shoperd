@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.CartMapper">
+	
+	<insert id="insert" parameterType="Cart">
+		INSERT INTO cart VALUES (NULL, #{custid}, #{itemid}, #{cartcnt})
+	</insert>
+	<update id="update" parameterType="Cart">
+		UPDATE cart SET cartcnt=#{cartcnt} WHERE cartid=#{cartid}
+	</update>
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM cart WHERE cartid=#{cartid}
+	</delete>
+	<select id="select" parameterType="Integer" resultType="Cart">
+		SELECT ca.cartid, cu.custid, cu.name AS custname, ca.itemid, it.itemname, it.price, ca.cartcnt, it.brand
+		FROM cart ca
+		INNER JOIN cust cu ON ca.custid=cu.custid
+		INNER JOIN item it ON ca.itemid=it.itemid
+		WHERE cartid=#{cartid} 
+	</select>
+	<select id="selectall" resultType="Cart">
+		SELECT ca.cartid, cu.custid, cu.name AS custname, ca.itemid, it.itemname, it.price, ca.cartcnt, it.brand
+		FROM cart ca
+		INNER JOIN cust cu ON ca.custid=cu.custid
+		INNER JOIN item it ON ca.itemid=it.itemid 
+	</select>
+
+</mapper>
