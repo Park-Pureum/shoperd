@@ -20,7 +20,6 @@ public class Cust {
 	private int zipcode;
 	private String addr;
 	
-	
 	public Cust(String custid, String pwd, String name, String tel) {
 		super();
 		this.custid = custid;
@@ -28,6 +27,5 @@ public class Cust {
 		this.name = name;
 		this.tel = tel;
 	}
-	
 	
 }
